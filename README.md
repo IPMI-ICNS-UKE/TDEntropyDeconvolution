@@ -1,7 +1,7 @@
 
 # Time-Dependent Entropy Deconvoultion
 
-For detailed instructions see the [Documentation](https://lwoelk.github.io/DeconvolutionBio/). 
+For detailed instructions see the [Documentation](https://IPMI-ICNS-UKE.github.io/TDimageRestoration/). 
 
 ## About
 
@@ -12,7 +12,7 @@ The point spread function can either be given as image input or calculated analy
 ## Usage
 
 1. Enter parameters in parameters.json file, details see in the 
-   [Documentation](https://lwoelk.github.io/DeconvolutionBio/). 
+   [Documentation](https://IPMI-ICNS-UKE.github.io/TDimageRestoration/)
 2. Run python main.py
 
 
