@@ -1,0 +1,20 @@
+title: Time-Dependent Entropy Deconvolution
+lang: en
+description: 2D time dependent deconvolution of microscopy data
+
+show_downloads: true
+
+remote_theme: rundocs/jekyll-rtd-theme
+
+readme_index:
+  with_frontmatter: true
+
+exclude:
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+
+plugins:
+  - jemoji
+  - jekyll-avatar
+  - jekyll-mentions
