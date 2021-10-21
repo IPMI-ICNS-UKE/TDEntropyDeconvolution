@@ -1,11 +1,11 @@
 
-# Time-Dependent Entropy Deconvoultion
+# Time-Dependent Image Restoration
 
 For detailed instructions see the [Documentation](https://ipmi-icns-uke.github.io/TDEntropyDeconvolution/). 
 
 ## About
 
-This program deconvolves microscopy images. The input can either be a 2D single image or a 2D time series. 
+This program deconvolves microscopy images. The input can either be a 2D single image or a 2D time series, i.e. 2D+t data. 
 The 2D-only version is based on [1]. For the deconvolution of a time series, a regularizer in time domain was added.
 The point spread function can either be given as image input or calculated analytically with the relevant parameters.
 
