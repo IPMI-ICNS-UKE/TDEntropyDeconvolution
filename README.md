@@ -1,7 +1,7 @@
 
 # Time-Dependent Entropy Deconvoultion
 
-For detailed instructions see the [Documentation](https://IPMI-ICNS-UKE.github.io/TDimageRestoration/). 
+For detailed instructions see the [Documentation](https://ipmi-icns-uke.github.io/TDEntropyDeconvolution/). 
 
 ## About
 
@@ -12,7 +12,7 @@ The point spread function can either be given as image input or calculated analy
 ## Usage
 
 1. Enter parameters in parameters.json file, details see in the 
-   [Documentation](https://IPMI-ICNS-UKE.github.io/TDimageRestoration/)
+   [Documentation](https://ipmi-icns-uke.github.io/TDEntropyDeconvolution/)
 2. Run python main.py
 
 
