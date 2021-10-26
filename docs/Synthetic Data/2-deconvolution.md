@@ -6,9 +6,9 @@ sort: 2
 
 Given here is an example of a workflow for using our deconvolution algorithm with synthetic data.
 The same workflow can be run at once by changing the relevant parameters in the script ``example_synthetic.py`` and running it as 
-``shell
+```shell
 python example_synthetic.py
-``
+```
 
 ## Creation of Noisy Synthetic Data
 
