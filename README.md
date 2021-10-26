@@ -19,4 +19,5 @@ The point spread function can either be given as image input or calculated analy
 
 ## References
 [1] L. Woelk, S. A. Kannabiran, V. Brock, Ch. E. Gee, Ch. Lohr, A. H. Guse, B. Diercks, and R. Werner. 2021. "Time-Dependent Image Restoration of Low-SNR Live Cell Ca2+ Fluorescence Microscopy Data". bioRxiv 2021.10.05.462864. https://doi.org/10.1101/2021.10.05.462864.
+
 [2] Arigovindan, Muthuvel, Jennifer C. Fung, Daniel Elnatan, Vito Mennella, Yee-Hung Mark Chan, Michael Pollard, Eric Branlund, John W. Sedat, und David A. Agard. 2013. „High-Resolution Restoration of 3D Structures from Widefield Images with Extreme Low Signal-to-Noise-Ratio“. Proceedings of the National Academy of Sciences 110 (43): 17344–49. https://doi.org/10.1073/pnas.1315675110.
