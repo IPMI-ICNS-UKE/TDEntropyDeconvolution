@@ -127,31 +127,6 @@ file with the parameter values in the file name.
 At the moment, depending on your machine, the program does not support very large data files due to memory issues. 
 The workaround is to give a specific region of interest to process. 
 
-Whether or not a region of interest will be cut out is controlled by the parameter ````"cut_roi"````, which can be set
-either to ````true```` or ```false```.
-
-If it is set to ``true``, the spatial region can be determined by setting the desired image size and the upper 
-left corner of the roi. If slicing in the time domain is also desired, the first and last frame should be given. 
-For example
-
-```json
-{
-  ...
-  "size": 500,
-  "upper_left": [250, 500],
-  "time": [0, 10],
-  ...
-}
-```
-
-will cut a 500 pixel x 500 pixel region of interest starting at the point ```[250, 500]```, where the first 
-is the _vertical_ and the second the _horizontal_ coordinate. Only frames ````0-10```` will be processed.
-
-If the entire image (or frame) is to be processed with no region of interest cut out, the value of ````"size"```` needs 
-to be set to ```"size": "all"```. Similarly, in the time domain, ``"time": "all"`` will ensure processing of all frames.
-
-If ```"cut_roi"``` is set to ```"false"```, all of the above parameters will be ignored.
-
 
 ### Deconvolution
 
