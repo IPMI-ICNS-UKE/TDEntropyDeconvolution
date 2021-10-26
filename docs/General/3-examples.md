@@ -47,13 +47,6 @@ which will sometimes give better results with a value of larger than 1.
     "image_name": "example.tif",
     "save_path": "results/2D/"
   },
-  "roi":
-  {
-    "cut_roi": false,
-    "size":  500,
-    "upper_left": [250, 500],
-    "time": "all"
-  },
   "deconvolution":
   {
     "lambda": [
