@@ -9,7 +9,7 @@ To use this program, the respository needs to be downloaded either by clicking t
 folder in the command line by typing ```cd path/to/your/folder``` and then executing
 
 ```shell
-git clone htts://github.io/lwoelk/DeconvolutionBio
+git clone https://github.com/IPMI-ICNS-UKE/TDEntropyDeconvolution 
 ```
 
 Also, Python 3.x needs to be installed. For instructions on how to do this on your

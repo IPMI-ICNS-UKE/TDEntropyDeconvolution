@@ -105,13 +105,6 @@ over, i.e. the following parameter input file
     "image_name": "example_timeseries.tif",
     "save_path": "results/time/"
   },
-  "roi":
-  {
-    "cut_roi": true,
-    "size":  500,
-    "upper_left": [250, 500],
-    "time": "all"
-  },
   "deconvolution":
   {
     "lambda": [
@@ -128,5 +121,4 @@ over, i.e. the following parameter input file
   }
 }
 ```
-will result in 9 deconvolved time series. Note that here, there is also a region of interest cut out to process, 
-since the entire time series would be too large to be processed all at once.
+will result in 9 deconvolved time series.
