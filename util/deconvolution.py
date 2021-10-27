@@ -15,14 +15,18 @@ class Deconvolution:
         self.N = N
         self.delta = delta
         if time_dependent(inputimage.shape):
-            self.dims = (inputimage.shape[0]+2, inputimage.shape[1], inputimage.shape[2])
+            self.dims = (inputimage.shape[0]+6, inputimage.shape[1], inputimage.shape[2])
             self.xdims = (self.dims[1], self.dims[2])
             self.h = np.zeros(self.dims)
             self.h[self.dims[0] // 2, :, :] = psf
             self.f = np.zeros(self.dims)
-            self.f[1:-1] = inputimage
+            self.f[3:-3] = inputimage
             self.f[0] = inputimage[0]
+            self.f[1] = inputimage[0]
+            self.f[2] = inputimage[0]
             self.f[-1] = inputimage[-1]
+            self.f[-2] = inputimage[-1]
+            self.f[-3] = inputimage[-1]
         else:
             self.dims  = inputimage.shape
             self.xdims = self.dims
@@ -179,4 +183,4 @@ class Deconvolution:
             D = self.compute_D(g)
             U = self.compute_U(R, D)
 
-        return g[1:-1]
+        return g[3:-3]
