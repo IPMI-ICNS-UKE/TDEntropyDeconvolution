@@ -19,9 +19,9 @@
   "io":
     {
       "read_folder": false,
-      "read_path": "/Users/lwoelk/pcloud/popsync/Biodata/BD/140606 WT 4/",
-      "image_name": "140606 WT 4_roi2_fura.tif",
-      "save_path": "/Users/lwoelk/pcloud/popsync/Biodata/BD/140606 WT 4/new/results/",
+      "read_path": "/Users/lwoelk/pcloud/popsync/Biodata/Lola/",
+      "image_name": "211209_NFAT-DAPI_basal_BSA_1_w1CF-488.tif",
+      "save_path": "/Users/lwoelk/pcloud/popsync/Biodata/Lola/results/",
       "create_image_folder": true
     },
   "deconvolution":

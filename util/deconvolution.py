@@ -31,6 +31,8 @@ class Deconvolution:
             self.dims  = inputimage.shape
             self.xdims = self.dims
             self.h = psf
+            self.f = inputimage
+            self.lt = 0.0
         self.H0 = np.sum(np.square(self.h))
         self.P = np.zeros(self.dims)
         self.b = convolve_fft(self.f, self.h)
@@ -45,6 +47,7 @@ class Deconvolution:
             self.Lwt = [self.Lwtt, self.Lwxt, self.Lwyt]
         else:
             self.lt = 0.0
+            self.Lwt = 0.0
         self.zeta = 0.8
         self.tol = 1e-6
         self.gw = np.zeros(self.dims, np.complex128)
@@ -56,7 +59,8 @@ class Deconvolution:
 
         Pw = np.zeros(self.dims, np.complex128) + h_2
         Pw +=  self.l * (1 + np.sum(np.conj(self.Lw)*self.Lw, axis=0))
-        Pw += self.lt * (1 + np.sum(np.conj(self.Lwt)*self.Lwt, axis=0))
+        if time_dependent(self.f.shape):
+            Pw += self.lt * (1 + np.sum(np.conj(self.Lwt)*self.Lwt, axis=0))
         #Pw += self.lt * (1 + np.conj(self.Lwtt)*self.Lwtt)
 
         gw = np.reciprocal(Pw) * np.fft.fftn(self.b)
@@ -96,25 +100,25 @@ class Deconvolution:
         N = self.compute_N(g)
 
         W, gxx, gxy, gyy = self.compute_W(g)
-
         tmp =  dv.apply_dxx_minus(W * gxx)
         tmp += dv.apply_dxy_minus(W * gxy)
         tmp += dv.apply_dyy_minus(W * gyy)
         tmp += 100 * N * g + W * g
         tmp *= self.l
 
-        Wt, gtt, gxt, gyt = self.compute_Wt(g)
-
-        tmpt  = dv.apply_dtt_minus(Wt * gtt, self.delta)
-        tmpt += dv.apply_dxt_minus(Wt * gxt, self.delta)
-        tmpt += dv.apply_dyt_minus(Wt * gyt, self.delta)
-        tmpt += Wt * g
-        tmpt *= self.lt
-
-        hhg = convolve_fft(convolve_fft(g, self.h[:, ::-1, ::-1]), self.h[:, ::-1, ::-1])
+        if time_dependent(self.f.shape):
+            Wt, gtt, gxt, gyt = self.compute_Wt(g)
+            tmpt = dv.apply_dtt_minus(Wt * gtt, self.delta)
+            tmpt += dv.apply_dxt_minus(Wt * gxt, self.delta)
+            tmpt += dv.apply_dyt_minus(Wt * gyt, self.delta)
+            tmpt += Wt * g
+            tmpt *= self.lt
+            hhg = convolve_fft(convolve_fft(g, self.h[:, ::-1, ::-1]), self.h[:, ::-1, ::-1])
+            R = self.b - hhg - tmp - tmpt
+        else:
+            hhg = convolve_fft(convolve_fft(g, self.h[::-1, ::-1]), self.h[::-1, ::-1])
+            R = self.b - hhg - tmp
         #hhg = convolve_fft(convolve_fft(g, self.h[::-1, ::-1, ::-1]), self.h[::-1, ::-1, ::-1])
-
-        R = self.b - hhg - tmp - tmpt
 
         return R
 
@@ -122,7 +126,6 @@ class Deconvolution:
 
         N = self.compute_N(g)
         W, gxx, gxy, gyy = self.compute_W(g)
-        Wt, gtt, gxt, gyt = self.compute_Wt(g)
 
         #tmp =  dv.apply_dxx_minus(dv.apply_dxx_minus(W))
         #tmp += dv.apply_dxy_minus(dv.apply_dxy_minus(W))
@@ -133,14 +136,16 @@ class Deconvolution:
 
         D = 100 * self.l * N * g + self.l * (W + tmp) + self.H0
 
-        #tmp =  dv.apply_dtt_minus(dv.apply_dtt_minus(Wt, self.delta))
-        #tmp += dv.apply_dxt_minus(dv.apply_dxt_minus(Wt, self.delta))
-        #tmp += dv.apply_dyt_minus(dv.apply_dyt_minus(Wt, self.delta))
-        tmp =  dv.apply_dtt_minus(dv.apply_dtt(Wt, self.delta))
-        tmp += dv.apply_dxt_minus(dv.apply_dxt(Wt, self.delta))
-        tmp += dv.apply_dyt_minus(dv.apply_dyt(Wt, self.delta))
+        if time_dependent(self.f.shape):
+            Wt, gtt, gxt, gyt = self.compute_Wt(g)
+            #tmp =  dv.apply_dtt_minus(dv.apply_dtt_minus(Wt, self.delta))
+            #tmp += dv.apply_dxt_minus(dv.apply_dxt_minus(Wt, self.delta))
+            #tmp += dv.apply_dyt_minus(dv.apply_dyt_minus(Wt, self.delta))
+            tmp =  dv.apply_dtt_minus(dv.apply_dtt(Wt, self.delta))
+            tmp += dv.apply_dxt_minus(dv.apply_dxt(Wt, self.delta))
+            tmp += dv.apply_dyt_minus(dv.apply_dyt(Wt, self.delta))
 
-        D += self.lt * (Wt + tmp)
+            D += self.lt * (Wt + tmp)
 
         return D
 
@@ -182,5 +187,7 @@ class Deconvolution:
             k +=1
             D = self.compute_D(g)
             U = self.compute_U(R, D)
-
-        return g[3:-3]
+        if time_dependent(self.f.shape):
+            return g[3:-3]
+        else:
+            return g
