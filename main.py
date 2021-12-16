@@ -92,10 +92,10 @@ def main():
             result = Dec.deconvolve()
             print(".......deconvolution finished.......")
             print(".......saving results.......")
-            T, X, Y = result.shape
+            #T, X, Y = result.shape
             # if original image is 2D only, a dimension needs to be dropped
-            if T == 1:
-                result = result[0]
+            #if T == 1:
+            #    result = result[0]
             # save result
             io.set_baseline(img, result)
             #            imu = convert_to_uint(result)
