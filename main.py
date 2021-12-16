@@ -36,7 +36,12 @@ def main():
         return
 
     for read_image_path, save_image_path in zip(readpaths, savepaths):
-        img = tf.imread(read_image_path)
+        try:
+            img = tf.imread(read_image_path)
+        except Exception as E:
+            print(E)
+            print("!! Failed to read image "+read_image_path)
+            continue
         # correct shape if image not quadratic
         if img.ndim == 2:
             if img.shape[0] != img.shape[1]:
