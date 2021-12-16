@@ -1,7 +1,7 @@
 {
   "psf":
   {"experimental": false,
-    "location": "/media/lenawoelk/DATA/ICNScloudData/psf/Lola/psf_far-red1_scaled_cutoff15.tif",
+    "location": "/path/to/psf/psf.tif",
     "type": "widefield",
     "lambdaEx": 488,
     "lambdaEm": 600,
@@ -19,9 +19,9 @@
   "io":
     {
       "read_folder": false,
-      "read_path": "/Users/lwoelk/pcloud/popsync/Biodata/Lola/",
-      "image_name": "211209_NFAT-DAPI_basal_BSA_1_w1CF-488.tif",
-      "save_path": "/Users/lwoelk/pcloud/popsync/Biodata/Lola/results/",
+      "read_path": "/path/to/your/data/",
+      "image_name": "imagename.tif",
+      "save_path": "/desired/results/path/",
       "create_image_folder": true
     },
   "deconvolution":
