@@ -1,6 +1,7 @@
 import numpy as np
 import skimage
 from scipy import ndimage
+from matplotlib import pyplot as plt
 
 
 def convert_to_uint(imf):
@@ -99,3 +100,13 @@ def estimate_gaussian_noise_variance(img, blocksize=20, k=20):
     vmean_bg = np.mean(vsk[:k])
     mmean_bg = np.mean(msk[:k])
     return v, mmean_bg
+
+
+def plot_data(img, t=0):
+    fig, ax = plt.subplots(figsize=[10, 10])
+    if img.ndim == 2:
+        ax.imshow(img)
+    elif img.ndim == 3:
+        ax.imshow(img[t])
+    ax.axis('off')
+    plt.show()

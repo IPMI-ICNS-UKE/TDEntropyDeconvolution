@@ -1,0 +1,9 @@
+name: TDDecon
+dependencies:
+  - numpy
+  - pandas
+  - scikit-image
+  - scipy
+  - matplotlib
+  - tifffile
+  - pillow
