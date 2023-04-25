@@ -8,7 +8,8 @@ from util.timedependence import time_dependent, convolve_fft
 
 class Deconvolution:
 
-    def __init__(self, psf, inputimage, l, lt, eps, N, delta=1.0):
+    def __init__(self, psf, inputimage, l, lt, eps, N, delta=1.0, verbose=False):
+        self.verbose = verbose
         self.l = l
         self.lt = lt
         self.eps = eps
@@ -174,7 +175,8 @@ class Deconvolution:
             print("k = "+str(k))
             zeta = self.zeta
             while zeta > 10-12:
-                print("zeta = ", zeta, "  e = ", ebar)
+                if self.verbose:
+                    print("zeta = ", zeta, "  e = ", ebar)
                 gbar = g + zeta * U
                 Rbar = self.compute_R(gbar)
                 ebar = np.sum(np.square(Rbar))

@@ -1,15 +1,15 @@
 import itertools
-import skimage
-import tifffile as tf
 import json
 import os
 import time
+
 import numpy as np
+import tifffile as tf
+
 import util.inputoutput as io
 from psf.psf import PSF
 from util.deconvolution import Deconvolution
 
-from util.helper import convert_to_uint, convert_to_float
 
 def main():
     # read in parameters
@@ -40,7 +40,7 @@ def main():
             img = tf.imread(read_image_path)
         except Exception as E:
             print(E)
-            print("!! Failed to read image "+read_image_path)
+            print("!! Failed to read image " + read_image_path)
             continue
         # correct shape if image not quadratic
         if img.ndim == 2:
@@ -72,7 +72,7 @@ def main():
         tol = 1e-6
 
         startingtime = time.strftime('%Y-%m-%d-%Hh%M', time.localtime(time.time()))
-        with open(save_image_path+'parameters_'+startingtime+'.json', 'w') as outfile:
+        with open(save_image_path + 'parameters_' + startingtime + '.json', 'w') as outfile:
             json.dump(parameters, outfile)
 
         for lamb_t, lamb, eps in itertools.product(lamb_t_arr, lamb_arr, eps_arr):
@@ -83,7 +83,7 @@ def main():
             start = time.time()
             start_hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start))
             print("....................................")
-            print(".... starting time : ", start_hr ," .......")
+            print(".... starting time : ", start_hr, " .......")
             print("deconvolving image ", os.path.basename(read_image_path))
             print("lamb_t = ", lamb_t, "  lamb = ", lamb, "  eps = ", eps)
             print(".......starting deconvolution.......")
@@ -92,25 +92,23 @@ def main():
             result = Dec.deconvolve()
             print(".......deconvolution finished.......")
             print(".......saving results.......")
-            #T, X, Y = result.shape
+            # T, X, Y = result.shape
             # if original image is 2D only, a dimension needs to be dropped
-            #if T == 1:
+            # if T == 1:
             #    result = result[0]
             # save result
             io.set_baseline(img, result)
             #            imu = convert_to_uint(result)
-            #result = result.astype(np.uint16)
+            # result = result.astype(np.uint16)
             tf.imwrite(io.create_filename_decon(save_image_path, lamb, lamb_t, maxit, eps),
                        result, photometric='minisblack')
             finish = time.time()
             finish_hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(finish))
-            print(".... finished at : ", finish_hr ," .......")
-            totaltime = finish-start
+            print(".... finished at : ", finish_hr, " .......")
+            totaltime = finish - start
             print("total time for deconvolution: ", "{:6.2f}".format(totaltime), " s")
             print("............................")
 
 
-
 if __name__ == '__main__':
     main()
-
