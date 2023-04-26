@@ -58,12 +58,12 @@ class Worker(QThread):
                             self.decon_data['max_iterations'], verbose=False)
         self.message.emit("Deconvolution in Progress")
         self.progress.emit(30)
-        result = Dec.deconvolve()
+        result = Dec.deconvolve_shortcut()
         # ------------- save results -------
         io.set_baseline(img, result)
         os.makedirs(self.io_data['save_path'], exist_ok=True)
         self.message.emit("Saving Results")
-        tf.imwrite(Path(self.io_data['save_path'], self.io_data['save_name']), result, photometric='minisblack')
+        tf.imwrite(self.io_data['save_path']+ '/'+self.io_data['save_name'], result, photometric='minisblack')
 
 
 class ParameterInputWindow(QMainWindow):
@@ -237,7 +237,7 @@ class ParameterInputWindow(QMainWindow):
         self.io_data['read_path'] = self.file_path_label.text()
         self.io_data['save_path'] = self.folder_path_label.text()
         fname = Path(self.io_data['read_path']).stem
-        self.io_data['save_name'] = Path(fname, '_deconvolved.tif')
+        self.io_data['save_name'] = fname+ '_deconvolved.tif'
 
 
     def show_progress_dialog(self):
@@ -276,3 +276,8 @@ if __name__ == "__main__":
     window.show()
 
     sys.exit(app.exec_())
+
+#%%
+from pathlib import Path
+Path("data/").stem
+
