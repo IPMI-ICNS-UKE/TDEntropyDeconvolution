@@ -1,1 +1,11 @@
+parameters2.json
+*__*__
+logo/*
+build/*
+dist/*
+*.spec
+*.tif
+results/*
+results2/
+.*
 .idea/*
