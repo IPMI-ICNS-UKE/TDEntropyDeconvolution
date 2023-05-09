@@ -277,7 +277,4 @@ if __name__ == "__main__":
 
     sys.exit(app.exec_())
 
-#%%
-from pathlib import Path
-Path("data/").stem
 
