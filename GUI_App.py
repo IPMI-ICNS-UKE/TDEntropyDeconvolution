@@ -10,9 +10,9 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, QHBoxLayout
                              QLabel, QLineEdit, QGroupBox, QComboBox, QPushButton, QFileDialog,
                              QProgressDialog)
 
-import util.inputoutput as io
-from psf.psf import PSF
-from util.deconvolution import Deconvolution
+from .util import inputoutput as io
+from .psf.psf import PSF
+from .util.deconvolution import Deconvolution
 
 
 class Worker(QThread):

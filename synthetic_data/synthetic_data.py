@@ -1,6 +1,6 @@
 import numpy as np
-from synthetic_data.perlin import PerlinNoiseFactory
-from synthetic_data.Brownian import Brownian
+from .perlin import PerlinNoiseFactory
+from .Brownian import Brownian
 import scipy.stats as stats
 
 

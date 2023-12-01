@@ -1,8 +1,8 @@
 import numpy as np
-from synthetic_data.synthetic_data import SyntheticData
-from psf.psf import PSF
-from util.timedependence import convolve_fft
-from util.deconvolution import Deconvolution
+from .synthetic_data.synthetic_data import SyntheticData
+from .psf.psf import PSF
+from .util.timedependence import convolve_fft
+from .util.deconvolution import Deconvolution
 import tifffile as tf
 import os
 import json

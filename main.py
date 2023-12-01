@@ -6,7 +6,7 @@ import time
 import numpy as np
 import tifffile as tf
 
-import .util.inputoutput as io
+from .util import inputoutput as io
 from .psf.psf import PSF
 from .util.deconvolution import Deconvolution
 

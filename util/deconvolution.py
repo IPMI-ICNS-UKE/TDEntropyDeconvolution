@@ -1,7 +1,7 @@
 import numpy as np
 
-import .util.derivatives as dv
-from .util.timedependence import time_dependent, convolve_fft
+from . import derivatives as dv
+from .timedependence import time_dependent, convolve_fft
 
 
 class Deconvolution:
