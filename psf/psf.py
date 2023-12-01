@@ -1,4 +1,4 @@
-from util.operators import Operator
+from .util.operators import Operator
 import numpy as np
 
 class PSF(Operator):

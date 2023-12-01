@@ -1,6 +1,6 @@
 import numpy as np
 from scipy import ndimage
-from util.timedependence import time_dependent
+from .util.timedependence import time_dependent
 
 
 
